@@ -1,0 +1,307 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Activity Diagram - Log out - Scenario</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Process Mining Service	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="UseCaseDiagram_nx3_F36FYGROHQb7.html" class="PageParentTitle">Web Service : System</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="UseCaseDiagram_nx3_F36FYGROHQb7.html" class="PageParentTitle">Log out : Use Case</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Activity Diagram - Log out - Scenario		</span>
+<a onclick="javascript: showVpLink('Process Mining Service.vpp://diagram/vJpgt36FYFGgARo_', 'Log out - Scenario\nProcess Mining Service.vpp://diagram/vJpgt36FYFGgARo_', 'Log out - Scenario', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|71.0|2.0|22.0|20.0|InitialNode_gppgt36FYFGgARpB.html|InitialNode_gppgt36FYFGgARpB.html|4ppgt36FYFGgARpC" id="option4ppgt36FYFGgARpC">Unnamed Initial Node : Initial Node</option>
+<option value="shape|5.0|82.0|154.0|40.0|ActivityAction_kppgt36FYFGgARpE.html|ActivityAction_kppgt36FYFGgARpE.html|Uppgt36FYFGgARpF" id="optionUppgt36FYFGgARpF">1. User Clicks on Log out : Action</option>
+<option value="shape|2.0|182.0|159.0|40.0|ActivityAction_cppgt36FYFGgARpK.html|ActivityAction_cppgt36FYFGgARpK.html|8ppgt36FYFGgARpL" id="option8ppgt36FYFGgARpL">2. logout(session : string) : Action</option>
+<option value="shape|22.0|282.0|120.0|40.0|ActivityAction_Sppgt36FYFGgARpQ.html|ActivityAction_Sppgt36FYFGgARpQ.html|yppgt36FYFGgARpR" id="optionyppgt36FYFGgARpR">3. Destroy Session : Action</option>
+<option value="shape|2.0|382.0|161.0|40.0|ActivityAction_appgt36FYFGgARpW.html|ActivityAction_appgt36FYFGgARpW.html|appgt36FYFGgARpX" id="optionappgt36FYFGgARpX">4. Navigate to Home Page : Action</option>
+<option value="shape|72.0|482.0|20.0|20.0|ActivityFinalNode_mppgt36FYFGgARpc.html|ActivityFinalNode_mppgt36FYFGgARpc.html|Wppgt36FYFGgARpd" id="optionWppgt36FYFGgARpd">Unnamed Activity Final Node : Activity Final Node</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Log_out_Scenario.png" usemap="#diagram_map" class="Image" width="167" height="506"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="75.0, 22.0, 75.0, 82.0, 89.0, 82.0, 89.0, 22.0" coords2="75.0, 22.0, 75.0, 82.0, 89.0, 82.0, 89.0, 22.0" shape="poly" alt=":Control Flow" id="areadiagram_map_Mppgt36FYFGgARpI_default" href="ControlFlow_0ppgt36FYFGgARpH.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','75.0, 22.0, 75.0, 82.0, 89.0, 82.0, 89.0, 22.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=4ppgt36FYFGgARpC/Unnamed/InitialNode'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Uppgt36FYFGgARpF/1. User Clicks on Log out/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '75.0, 22.0, 75.0, 82.0, 89.0, 82.0, 89.0, 22.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="75.0, 122.0, 75.0, 182.0, 89.0, 182.0, 89.0, 122.0" coords2="75.0, 122.0, 75.0, 182.0, 89.0, 182.0, 89.0, 122.0" shape="poly" alt=":Control Flow" id="areadiagram_map_Cppgt36FYFGgARpO_default" href="ControlFlow_Cppgt36FYFGgARpN.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','75.0, 122.0, 75.0, 182.0, 89.0, 182.0, 89.0, 122.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Uppgt36FYFGgARpF/1. User Clicks on Log out/Action'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=8ppgt36FYFGgARpL/2. logout(session : string)/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '75.0, 122.0, 75.0, 182.0, 89.0, 182.0, 89.0, 122.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="75.0, 222.0, 75.0, 282.0, 89.0, 282.0, 89.0, 222.0" coords2="75.0, 222.0, 75.0, 282.0, 89.0, 282.0, 89.0, 222.0" shape="poly" alt=":Control Flow" id="areadiagram_map_Kppgt36FYFGgARpU_default" href="ControlFlow_yppgt36FYFGgARpT.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','75.0, 222.0, 75.0, 282.0, 89.0, 282.0, 89.0, 222.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=8ppgt36FYFGgARpL/2. logout(session : string)/Action'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=yppgt36FYFGgARpR/3. Destroy Session/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '75.0, 222.0, 75.0, 282.0, 89.0, 282.0, 89.0, 222.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="75.0, 322.0, 75.0, 382.0, 89.0, 382.0, 89.0, 322.0" coords2="75.0, 322.0, 75.0, 382.0, 89.0, 382.0, 89.0, 322.0" shape="poly" alt=":Control Flow" id="areadiagram_map_Gppgt36FYFGgARpa_default" href="ControlFlow_6ppgt36FYFGgARpZ.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','75.0, 322.0, 75.0, 382.0, 89.0, 382.0, 89.0, 322.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=yppgt36FYFGgARpR/3. Destroy Session/Action'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=appgt36FYFGgARpX/4. Navigate to Home Page/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '75.0, 322.0, 75.0, 382.0, 89.0, 382.0, 89.0, 322.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="75.0, 422.0, 75.0, 482.0, 89.0, 482.0, 89.0, 422.0" coords2="75.0, 422.0, 75.0, 482.0, 89.0, 482.0, 89.0, 422.0" shape="poly" alt=":Control Flow" id="areadiagram_map_Oppgt36FYFGgARpg_default" href="ControlFlow_2ppgt36FYFGgARpf.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','75.0, 422.0, 75.0, 482.0, 89.0, 482.0, 89.0, 422.0',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=appgt36FYFGgARpX/4. Navigate to Home Page/Action'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Wppgt36FYFGgARpd/Unnamed/ActivityFinial')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '75.0, 422.0, 75.0, 482.0, 89.0, 482.0, 89.0, 422.0')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="72, 482, 92, 514.0" coords2="72, 482, 92, 514.0" shape="rect" alt=":Activity Final Node" id="areadiagram_map_Wppgt36FYFGgARpd_default" href="ActivityFinalNode_mppgt36FYFGgARpc.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','72, 482, 92, 502',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Scenario/GenericModel','ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Oppgt36FYFGgARpg/Unnamed/ActivityControlFlow'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '72, 482, 92, 502')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 382, 163, 434.0" coords2="2, 382, 163, 434.0" shape="rect" alt="4. Navigate to Home Page:Action" id="areadiagram_map_appgt36FYFGgARpX_default" href="ActivityAction_appgt36FYFGgARpW.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 382, 163, 422',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Navigate to Home Page/GenericModel','ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Gppgt36FYFGgARpa/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Oppgt36FYFGgARpg/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 382, 163, 422')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="22, 282, 142, 334.0" coords2="22, 282, 142, 334.0" shape="rect" alt="3. Destroy Session:Action" id="areadiagram_map_yppgt36FYFGgARpR_default" href="ActivityAction_Sppgt36FYFGgARpQ.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','22, 282, 142, 322',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/FLf.F36FYGROHQgb:MhEpF36FYGROHQvv/GenericModel','ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Kppgt36FYFGgARpU/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Gppgt36FYFGgARpa/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '22, 282, 142, 322')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 182, 161, 234.0" coords2="2, 182, 161, 234.0" shape="rect" alt="2. logout(session : string):Action" id="areadiagram_map_8ppgt36FYFGgARpL_default" href="ActivityAction_cppgt36FYFGgARpK.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 182, 161, 222',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/HaaYV36FYGROHSn2:r6Zgl36FYGROHR51$9_1gl36FYGROHR6K/GenericModel','ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Cppgt36FYFGgARpO/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Kppgt36FYFGgARpU/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '2, 182, 161, 222')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="5, 82, 159, 134.0" coords2="5, 82, 159, 134.0" shape="rect" alt="1. User Clicks on Log out:Action" id="areadiagram_map_Uppgt36FYFGgARpF_default" href="ActivityAction_kppgt36FYFGgARpE.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','5, 82, 159, 122',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/User Clicks on Log out/GenericModel','ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Mppgt36FYFGgARpI/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Cppgt36FYFGgARpO/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '5, 82, 159, 122')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="71, 2, 93, 34.0" coords2="71, 2, 93, 34.0" shape="rect" alt=":Initial Node" id="areadiagram_map_4ppgt36FYFGgARpC_default" href="InitialNode_gppgt36FYFGgARpB.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','71, 2, 93, 22',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Scenario/GenericModel'),new Array('ActivityDiagram_vJpgt36FYFGgARo_.html?shapeid=Mppgt36FYFGgARpI/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '71, 2, 93, 22')" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/InitialNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/InitialNode.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="InitialNode_gppgt36FYFGgARpB.html" class="ItemLink">N/A : Initial Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_kppgt36FYFGgARpE.html" class="ItemLink">1. User Clicks on Log out : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_cppgt36FYFGgARpK.html" class="ItemLink">2. logout(session : string) : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_Sppgt36FYFGgARpQ.html" class="ItemLink">3. Destroy Session : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityAction_appgt36FYFGgARpW.html" class="ItemLink">4. Navigate to Home Page : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/ActivityFinial.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/ActivityFinial.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="ActivityFinalNode_mppgt36FYFGgARpc.html" class="ItemLink">N/A : Activity Final Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Process Mining Service	</div>
+</body>
+</html>
